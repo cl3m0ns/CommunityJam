@@ -16,6 +16,7 @@ shape = SubResource( 1 )
 [node name="cashregister" type="Sprite" parent="."]
 scale = Vector2( 4.5, 4.5 )
 texture = ExtResource( 2 )
+hframes = 2
 
 [node name="GoodGlow" type="CPUParticles2D" parent="."]
 position = Vector2( 0.0157089, -17.6255 )
