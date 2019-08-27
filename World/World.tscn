@@ -1,19 +1,21 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://World/World.gd" type="Script" id=1]
 [ext_resource path="res://Background/Background.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Tiles/tiles.tscn" type="PackedScene" id=3]
 [ext_resource path="res://CashRegister/CashReg.tscn" type="PackedScene" id=4]
 [ext_resource path="res://LiarBot/LiarBot.tscn" type="PackedScene" id=5]
-[ext_resource path="res://Player/Player.tscn" type="PackedScene" id=6]
-[ext_resource path="res://nulshock bd.ttf" type="DynamicFontData" id=7]
-[ext_resource path="res://Items/Items.tscn" type="PackedScene" id=8]
-[ext_resource path="res://Tiles/StandBox.tscn" type="PackedScene" id=9]
+[ext_resource path="res://OpenStore/OpenStore.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Player/Player.tscn" type="PackedScene" id=7]
+[ext_resource path="res://nulshock bd.ttf" type="DynamicFontData" id=8]
+[ext_resource path="res://Items/Items.tscn" type="PackedScene" id=9]
+[ext_resource path="res://Tiles/StandBox.tscn" type="PackedScene" id=10]
+[ext_resource path="res://Door/Door.tscn" type="PackedScene" id=11]
 
 [sub_resource type="DynamicFont" id=1]
 size = 14
 use_mipmaps = true
-font_data = ExtResource( 7 )
+font_data = ExtResource( 8 )
 
 [node name="World" type="Node2D"]
 script = ExtResource( 1 )
@@ -28,7 +30,10 @@ position = Vector2( 240, 346.571 )
 [node name="LiarBot" parent="." instance=ExtResource( 5 )]
 position = Vector2( 420, 380 )
 
-[node name="Player" parent="." instance=ExtResource( 6 )]
+[node name="OpenStore" parent="." instance=ExtResource( 6 )]
+position = Vector2( 226, 137 )
+
+[node name="Player" parent="." instance=ExtResource( 7 )]
 position = Vector2( 128.285, 289.143 )
 
 [node name="UI" type="Node2D" parent="."]
@@ -74,24 +79,24 @@ text = "$0
 align = 2
 valign = 1
 
-[node name="Customer1" type="Node2D" parent="."]
+[node name="ITEMS" type="Node2D" parent="."]
 
-[node name="Items" parent="Customer1" instance=ExtResource( 8 )]
+[node name="Items" parent="ITEMS" instance=ExtResource( 9 )]
 position = Vector2( 132, 507 )
 
-[node name="Items2" parent="Customer1" instance=ExtResource( 8 )]
+[node name="Items2" parent="ITEMS" instance=ExtResource( 9 )]
 position = Vector2( 300, 507 )
 
-[node name="Items3" parent="Customer1" instance=ExtResource( 8 )]
+[node name="Items3" parent="ITEMS" instance=ExtResource( 9 )]
 position = Vector2( 468, 507 )
 
-[node name="Items4" parent="Customer1" instance=ExtResource( 8 )]
+[node name="Items4" parent="ITEMS" instance=ExtResource( 9 )]
 position = Vector2( 132, 651 )
 
-[node name="Items5" parent="Customer1" instance=ExtResource( 8 )]
+[node name="Items5" parent="ITEMS" instance=ExtResource( 9 )]
 position = Vector2( 300, 651 )
 
-[node name="Items6" parent="Customer1" instance=ExtResource( 8 )]
+[node name="Items6" parent="ITEMS" instance=ExtResource( 9 )]
 position = Vector2( 468, 651 )
 
 [node name="Item Stands" type="Node2D" parent="."]
@@ -100,20 +105,23 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="StandBox" parent="Item Stands" instance=ExtResource( 9 )]
+[node name="StandBox" parent="Item Stands" instance=ExtResource( 10 )]
 position = Vector2( 132, 520 )
 
-[node name="StandBox6" parent="Item Stands" instance=ExtResource( 9 )]
+[node name="StandBox6" parent="Item Stands" instance=ExtResource( 10 )]
 position = Vector2( 468, 664 )
 
-[node name="StandBox2" parent="Item Stands" instance=ExtResource( 9 )]
+[node name="StandBox2" parent="Item Stands" instance=ExtResource( 10 )]
 position = Vector2( 300, 520 )
 
-[node name="StandBox3" parent="Item Stands" instance=ExtResource( 9 )]
+[node name="StandBox3" parent="Item Stands" instance=ExtResource( 10 )]
 position = Vector2( 468, 520 )
 
-[node name="StandBox5" parent="Item Stands" instance=ExtResource( 9 )]
+[node name="StandBox5" parent="Item Stands" instance=ExtResource( 10 )]
 position = Vector2( 300, 664 )
 
-[node name="StandBox4" parent="Item Stands" instance=ExtResource( 9 )]
+[node name="StandBox4" parent="Item Stands" instance=ExtResource( 10 )]
 position = Vector2( 132, 664 )
+
+[node name="Door" parent="." instance=ExtResource( 11 )]
+position = Vector2( 297, 138 )

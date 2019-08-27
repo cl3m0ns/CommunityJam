@@ -19,3 +19,18 @@ scale = Vector2( 6, 6 )
 texture = ExtResource( 2 )
 vframes = 4
 hframes = 8
+
+[node name="ItemChange" type="CPUParticles2D" parent="."]
+emitting = false
+amount = 20
+emission_shape = 1
+emission_sphere_radius = 12.0
+gravity = Vector2( 0, -98 )
+angular_velocity = 141.64
+linear_accel = 37.71
+linear_accel_random = 0.41
+radial_accel = 39.34
+radial_accel_random = 0.2
+scale_amount = 12.0
+hue_variation = 1.0
+hue_variation_random = 1.0

@@ -32,6 +32,7 @@ func _physics_process(delta):
 	get_item_collisions()
 	get_robot_collision()
 	get_cash_collision()
+	get_open_collision()
 	if holding_item:
 		get_stand_collision()
 
@@ -42,33 +43,52 @@ func place_item(standBody):
 	holding_item = false
 	item_were_holding = null
 
-func get_stand_collision():
-		for body in $Hitbox.get_overlapping_areas():
-			if body.get("TYPE") == "STAND":
-				if Input.is_action_just_pressed("interact") && $PickupCooldown.is_stopped():
-					place_item(body)
+func get_body(type):
+	for body in $Hitbox.get_overlapping_areas():
+			if body.get("TYPE") == type:
+				return body
 
-
-
-func get_item_collisions():
+func get_body_parent(type):
 	for body in $Hitbox.get_overlapping_areas():
 			var item = body.get_parent()
-			if item.get("TYPE") == "ITEM":
-				if Input.is_action_just_pressed("interact") && holding_item != true:
-					item.picked_up = true
-					holding_item = true
-					item_were_holding = item
-					$PickupCooldown.wait_time = 0.4
-					$PickupCooldown.start()
+			if item.get("TYPE") == type:
+				return item
+
+func get_stand_collision():
+	var body = get_body("STAND")
+	if body && Input.is_action_just_pressed("interact") && $PickupCooldown.is_stopped():
+		place_item(body)
+
+
+func get_open_collision():
+	var body = get_body("OPENSTORE")
+	if body && Input.is_action_just_pressed("interact") && !GLOBAL.STORE_OPEN:
+		open_store()
+
+func open_store():
+	GLOBAL.STORE_OPEN = true
+	var parent = get_parent()
+	var store = parent.get_node("OpenStore")
+	var door = parent.get_node("Door")
+	store.get_node("Sprite").frame = 0
+	door.visible = false
+
+func get_item_collisions():
+	var item = get_body_parent("ITEM")
+	if item && Input.is_action_just_pressed("interact") && holding_item != true:
+		item.picked_up = true
+		holding_item = true
+		item_were_holding = item
+		$PickupCooldown.wait_time = 0.4
+		$PickupCooldown.start()
 
 func get_robot_collision():
 	pass
 
 func get_cash_collision():
-	for body in $Hitbox.get_overlapping_areas():
-		if body.get("TYPE") == "CASH REG":
-			if Input.is_action_just_pressed("interact") && $PickupCooldown.is_stopped() && holding_item:
-				sell_item()
+	var body = get_body("CASH REG")
+	if body && Input.is_action_just_pressed("interact") && $PickupCooldown.is_stopped() && holding_item:
+		sell_item()
 
 func sell_item():
 	var cashReg = get_parent().get_node('CashReg')
@@ -77,7 +97,8 @@ func sell_item():
 		get_parent().cash += 5
 	else:
 		cashReg.bad = true
-	item_were_holding.queue_free()
+	item_were_holding.hide()
+	item_were_holding.go_home()
 	item_were_holding = null
 	holding_item = false
 
