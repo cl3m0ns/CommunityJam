@@ -28,7 +28,9 @@ func show():
 	visible = true
 
 func go_home():
-	position = homePos
+	picked_up = false
+	print('going home')
+	set_global_position(homePos)
 	
 func fancy_particles():
 	$ItemChange.emitting = true

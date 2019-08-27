@@ -85,7 +85,7 @@ valign = 1
 
 [node name="ITEMS" type="Node2D" parent="."]
 
-[node name="Items" parent="ITEMS" instance=ExtResource( 10 )]
+[node name="Items1" parent="ITEMS" instance=ExtResource( 10 )]
 position = Vector2( 132, 507 )
 
 [node name="Items2" parent="ITEMS" instance=ExtResource( 10 )]
@@ -108,11 +108,8 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="StandBox" parent="Item Stands" instance=ExtResource( 11 )]
+[node name="StandBox1" parent="Item Stands" instance=ExtResource( 11 )]
 position = Vector2( 132, 520 )
-
-[node name="StandBox6" parent="Item Stands" instance=ExtResource( 11 )]
-position = Vector2( 468, 664 )
 
 [node name="StandBox2" parent="Item Stands" instance=ExtResource( 11 )]
 position = Vector2( 300, 520 )
@@ -120,11 +117,14 @@ position = Vector2( 300, 520 )
 [node name="StandBox3" parent="Item Stands" instance=ExtResource( 11 )]
 position = Vector2( 468, 520 )
 
+[node name="StandBox4" parent="Item Stands" instance=ExtResource( 11 )]
+position = Vector2( 132, 664 )
+
 [node name="StandBox5" parent="Item Stands" instance=ExtResource( 11 )]
 position = Vector2( 300, 664 )
 
-[node name="StandBox4" parent="Item Stands" instance=ExtResource( 11 )]
-position = Vector2( 132, 664 )
+[node name="StandBox6" parent="Item Stands" instance=ExtResource( 11 )]
+position = Vector2( 468, 664 )
 
 [node name="QGrid" type="Node2D" parent="."]
 

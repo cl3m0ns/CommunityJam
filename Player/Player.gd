@@ -58,8 +58,12 @@ func get_body_parent(type):
 
 func get_stand_collision():
 	var body = get_body("STAND")
+
 	if body && Input.is_action_just_pressed("interact") && $PickupCooldown.is_stopped():
-		place_item(body)
+		var bName = String(body.name).split("StandBox")
+		var itemName = String(item_were_holding.name).split("Items")
+		if bName[1] == itemName[1]:
+			place_item(body)
 
 
 func get_open_collision():
@@ -107,6 +111,7 @@ func test_run():
 func get_item_collisions():
 	var item = get_body_parent("ITEM")
 	if item && Input.is_action_just_pressed("interact") && holding_item != true:
+		print('trying to pick another')
 		item.picked_up = true
 		holding_item = true
 		item_were_holding = item
