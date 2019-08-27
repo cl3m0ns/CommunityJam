@@ -13,6 +13,9 @@ func _physics_process(delta):
 	if picked_up:
 		var playerPos = get_parent().get_parent().find_node("Player").get_global_position()
 		set_global_position(Vector2(playerPos.x + 6, playerPos.y - 56)) 
+	
+	if $FancyTimer.is_stopped():
+		$ItemChange.emitting = false
 
 func choose(array):
 	array.shuffle()
@@ -26,3 +29,8 @@ func show():
 
 func go_home():
 	position = homePos
+	
+func fancy_particles():
+	$ItemChange.emitting = true
+	$FancyTimer.wait_time = 0.75
+	$FancyTimer.start()
