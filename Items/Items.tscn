@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Items/Items.gd" type="Script" id=1]
 [ext_resource path="res://Items/items.png" type="Texture" id=2]
+[ext_resource path="res://Misc/arrow.tscn" type="PackedScene" id=3]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 32.9402, 32.1058 )
@@ -39,3 +40,6 @@ hue_variation_random = 1.0
 [node name="FancyTimer" type="Timer" parent="."]
 wait_time = 0.75
 one_shot = true
+
+[node name="arrow" parent="." instance=ExtResource( 3 )]
+position = Vector2( 0, -48 )

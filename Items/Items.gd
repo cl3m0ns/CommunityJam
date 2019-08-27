@@ -3,6 +3,7 @@ extends Node2D
 var TYPE = "ITEM"
 var picked_up = false
 var homePos = Vector2.ZERO
+var showIcon = false
 
 func _ready():
 	homePos = get_global_position() 
@@ -16,6 +17,11 @@ func _physics_process(delta):
 	
 	if $FancyTimer.is_stopped():
 		$ItemChange.emitting = false
+		
+	if showIcon:
+		$arrow.visible = true
+	else:
+		$arrow.visible = false
 
 func choose(array):
 	array.shuffle()

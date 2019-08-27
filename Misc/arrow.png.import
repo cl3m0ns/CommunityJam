@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/talkingbubble.png-3d4f519c61577e9b7cd1315062d1deab.stex"
+path="res://.import/arrow.png-8c868566a4f0f0801ae208b688045371.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Dialog/talkingbubble.png"
-dest_files=[ "res://.import/talkingbubble.png-3d4f519c61577e9b7cd1315062d1deab.stex" ]
+source_file="res://Misc/arrow.png"
+dest_files=[ "res://.import/arrow.png-8c868566a4f0f0801ae208b688045371.stex" ]
 
 [params]
 

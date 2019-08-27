@@ -31,12 +31,12 @@ func _physics_process(delta):
 	
 	get_item_collisions()
 	get_robot_collision()
-	get_cash_collision()
 	get_open_collision()
+	get_bot_exit_collision()
+	
 	if holding_item:
+		get_cash_collision()
 		get_stand_collision()
-	if check_for_bot_exit:
-		get_bot_exit_collision()
 
 func place_item(standBody):
 	var standPosition = standBody.get_global_position()
@@ -68,8 +68,12 @@ func get_stand_collision():
 
 func get_open_collision():
 	var body = get_body("OPENSTORE")
-	if body && Input.is_action_just_pressed("interact") && !GLOBAL.STORE_OPEN:
-		open_store()
+	if body && !GLOBAL.STORE_OPEN:
+		body.showIcon = true
+		if Input.is_action_just_pressed("interact"):
+			open_store()
+	else:
+		get_parent().find_node("OpenStore").showIcon = false
 
 func open_store():
 	GLOBAL.STORE_OPEN = true
@@ -110,18 +114,29 @@ func test_run():
 
 func get_item_collisions():
 	var item = get_body_parent("ITEM")
-	if item && Input.is_action_just_pressed("interact") && holding_item != true:
-		print('trying to pick another')
-		item.picked_up = true
-		holding_item = true
-		item_were_holding = item
-		$PickupCooldown.wait_time = 0.4
-		$PickupCooldown.start()
+	
+	if item && holding_item != true:
+		item.showIcon = true
+		if Input.is_action_just_pressed("interact"):
+			item.picked_up = true
+			holding_item = true
+			item.showIcon = false
+			item_were_holding = item
+			$PickupCooldown.wait_time = 0.4
+			$PickupCooldown.start()
+	else:
+		var chillins = get_parent().find_node("ITEMS").get_children()
+		for child in chillins:
+			child.showIcon = false
 
 func get_robot_collision():
 	var robot = get_parent().find_node("LiarBot")
 	var body = get_body_parent("ROBO")
+	if body && !robot.isTalking:
+		robot.showIcon = true
+		
 	if body && Input.is_action_just_pressed("interact"):
+		robot.showIcon = false
 		robot.isTalking = true
 		check_for_bot_exit = true
 
@@ -129,14 +144,20 @@ func get_bot_exit_collision():
 	var robot = get_parent().find_node("LiarBot")
 	var body = get_body("EXIT BOT")
 	if body:
+		robot.showIcon = false
 		robot.isTalking = false
 		check_for_bot_exit = false
 
 
 func get_cash_collision():
 	var body = get_body("CASH REG")
-	if body && Input.is_action_just_pressed("interact") && $PickupCooldown.is_stopped() && holding_item:
-		sell_item()
+	if body && holding_item:
+		body.showIcon = true
+		if Input.is_action_just_pressed("interact") && $PickupCooldown.is_stopped():
+			body.showIcon = false
+			sell_item()
+	else:
+		get_parent().find_node("CashReg").showIcon = false
 
 func sell_item():
 	var cashReg = get_parent().get_node('CashReg')
