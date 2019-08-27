@@ -9,7 +9,6 @@ var lastCash = 0
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	GLOBAL.RIGHT_ITEM = $Customer1/Items
-	pass # Replace with function body.
 
 func _physics_process(delta):
 	if lastCash != cash:

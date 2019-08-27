@@ -38,7 +38,7 @@ func _physics_process(delta):
 func place_item(standBody):
 	var standPosition = standBody.get_global_position()
 	item_were_holding.picked_up = false
-	item_were_holding.set_position(Vector2(standPosition.x - 20, standPosition.y- 25))
+	item_were_holding.set_position(Vector2(standPosition.x, standPosition.y - 13))
 	holding_item = false
 	item_were_holding = null
 
@@ -58,7 +58,7 @@ func get_item_collisions():
 					item.picked_up = true
 					holding_item = true
 					item_were_holding = item
-					$PickupCooldown.wait_time = 1
+					$PickupCooldown.wait_time = 0.4
 					$PickupCooldown.start()
 
 func get_robot_collision():

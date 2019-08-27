@@ -4,7 +4,7 @@
 [ext_resource path="res://CashRegister/cashregister.png" type="Texture" id=2]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 51.9769, 45.3601 )
+extents = Vector2( 57.0894, 51.3791 )
 
 [node name="CashReg" type="Area2D"]
 script = ExtResource( 1 )
@@ -14,39 +14,29 @@ position = Vector2( 0, 12 )
 shape = SubResource( 1 )
 
 [node name="cashregister" type="Sprite" parent="."]
-scale = Vector2( 4.5, 4.5 )
+scale = Vector2( 6, 6 )
 texture = ExtResource( 2 )
 hframes = 2
 
 [node name="GoodGlow" type="CPUParticles2D" parent="."]
-position = Vector2( 0.0157089, -17.6255 )
+position = Vector2( 0.016, -24 )
 emitting = false
-amount = 20
-lifetime = 0.5
+amount = 15
 emission_shape = 2
-emission_rect_extents = Vector2( 8, 1 )
-gravity = Vector2( 0, -90 )
-initial_velocity = 6.2
-angular_velocity = 318.69
-radial_accel = 39.34
-scale_amount = 6.0
-scale_amount_random = 0.19
-color = Color( 0.184314, 0.341176, 0.0588235, 1 )
+emission_rect_extents = Vector2( 12, 1 )
+gravity = Vector2( 0, -98 )
+scale_amount = 12.0
+color = Color( 0.411765, 0.792157, 0.333333, 1 )
 
 [node name="BadGlob" type="CPUParticles2D" parent="."]
-position = Vector2( 0.0157089, -17.6255 )
+position = Vector2( 0.016, -24 )
 emitting = false
-amount = 20
-lifetime = 0.5
+amount = 15
 emission_shape = 2
-emission_rect_extents = Vector2( 8, 1 )
-gravity = Vector2( 0, -90 )
-initial_velocity = 6.2
-angular_velocity = 318.69
-radial_accel = 39.34
-scale_amount = 6.0
-scale_amount_random = 0.19
-color = Color( 0.682353, 0, 0, 1 )
+emission_rect_extents = Vector2( 12, 1 )
+gravity = Vector2( 0, -98 )
+scale_amount = 12.0
+color = Color( 0.74902, 0.231373, 0.203922, 1 )
 
 [node name="GlowTimer" type="Timer" parent="."]
 process_mode = 0
