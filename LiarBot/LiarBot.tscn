@@ -60,7 +60,8 @@ shape = SubResource( 1 )
 anims/idle = SubResource( 2 )
 
 [node name="RoboDialog" parent="." instance=ExtResource( 2 )]
-position = Vector2( -86, -110 )
+visible = false
+position = Vector2( -85.4867, -117.7 )
 
 [node name="liarbot" type="Sprite" parent="."]
 scale = Vector2( 6, 6 )

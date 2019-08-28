@@ -7,7 +7,6 @@ var items = []
 var customers = []
 var startLoop = false
 
-
 var sprite1 = preload("res://PuzzleDialog/blue_dots.png")
 var sprite2 = preload("res://PuzzleDialog/blue_solid.png")
 var sprite3 = preload("res://PuzzleDialog/blue_striped.png")
@@ -33,6 +32,19 @@ var sprite22 = preload("res://PuzzleDialog/yellow_dots.png")
 var sprite23 = preload("res://PuzzleDialog/yellow_solid.png")
 var sprite24 = preload("res://PuzzleDialog/yellow_striped.png")
 
+
+var storyDone = false
+var storyIndex = 1
+var story1 = preload("res://StoryDialog/story_1.png")
+var story2 = preload("res://StoryDialog/story_2.png")
+var story3 = preload("res://StoryDialog/story_3.png")
+
+var tutIndex = 1
+var tutDone = false
+var tut1 = preload("res://TutorialDialog/tutorial_1.png")
+var tut2 = preload("res://TutorialDialog/tutorial_2.png")
+var tut3 = preload("res://TutorialDialog/tutorial_3.png")
+var tut4 = preload("res://TutorialDialog/tutorial_4.png")
 
 var currentPuzzle = null
 var puzzle = [
@@ -182,7 +194,10 @@ var puzzle = [
 	},
 ]
 
+var switchToTut = true
+
 func _ready():
+	#set up items
 	var item1 = find_node("ITEMS").get_child(0)
 	var item2 = find_node("ITEMS").get_child(1)
 	var item3 = find_node("ITEMS").get_child(2)
@@ -191,11 +206,66 @@ func _ready():
 	var item6 = find_node("ITEMS").get_child(5)
 	items = [item1, item2, item3, item4, item5, item6]
 	GLOBAL.RIGHT_ITEM = $ITEMS/Items
+	$Player.visible = false
+	
+	$Transition.fade_in()
 
 func _physics_process(delta):
+	
 	if lastCash != cash:
 		$UI/MoneyLabel.set_text( "$" + String(cash))
 	
+	if storyDone && tutDone:
+		GLOBAL.STORY_TIME = false
+		run_game_loop()
+	
+	if !storyDone:
+		run_story()
+		
+	if storyDone && !tutDone:
+		run_tut()
+
+func run_tut():
+	GLOBAL.STORY_TIME = true
+	if $TutTimer.is_stopped() && switchToTut:
+		$Transition.fade_in()
+		$TutTimer.wait_time = 3
+		$Player.visible = true
+		$TutTimer.start()
+		update_robot(tut1)
+		switchToTut = false
+	elif $TutTimer.is_stopped():
+		match tutIndex:
+			1:
+				update_robot(tut1)
+			2: 
+				update_robot(tut2)
+			3: 
+				update_robot(tut3)
+			4:
+				update_robot(tut4)
+
+func run_story():
+	GLOBAL.STORY_TIME = true
+	show_bot_dialog()
+	match storyIndex:
+		1:
+			update_robot(story1)
+		2: 
+			update_robot(story2)
+		3: 
+			update_robot(story3)
+	
+	if storyIndex > 3:
+		if switchToTut:
+			GLOBAL.STORY_ENDING = true
+			$Transition.fade_out()
+			$TutTimer.wait_time = 3
+			$TutTimer.start()
+			storyDone = true
+
+
+func run_game_loop():
 	if GLOBAL.STORE_OPEN:
 		puzzle_loop()
 		startLoop = false
@@ -210,8 +280,7 @@ func _physics_process(delta):
 			set_customer_q_spots()
 			move_customers_to_spots()
 			pick_item()
-			update_robot()
-			
+			update_robot(currentPuzzle.spriteName)
 
 func end_day():
 	GLOBAL.CURR_DAY += 1
@@ -227,10 +296,16 @@ func puzzle_loop():
 		set_customer_q_spots()
 		move_customers_to_spots()
 		pick_item()
-		update_robot()
+		update_robot(currentPuzzle.spriteName)
 
-func update_robot():
-	$LiarBot/RoboDialog.set_sprite(currentPuzzle.spriteName)
+func update_robot(sprite):
+	$LiarBot/RoboDialog.set_sprite(sprite)
+
+func show_bot_dialog():
+	$LiarBot.isTalking = true
+
+func hide_bot_dialog():
+	$LiarBot.isTalking = false
 
 func move_customers_to_spots():
 	for cust in customers:

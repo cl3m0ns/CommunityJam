@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://World/World.gd" type="Script" id=1]
 [ext_resource path="res://Background/Background.tscn" type="PackedScene" id=2]
@@ -12,6 +12,7 @@
 [ext_resource path="res://Items/Items.tscn" type="PackedScene" id=10]
 [ext_resource path="res://Tiles/StandBox.tscn" type="PackedScene" id=11]
 [ext_resource path="res://Tiles/CustGrid.tscn" type="PackedScene" id=12]
+[ext_resource path="res://Transition/Transition.tscn" type="PackedScene" id=13]
 
 [sub_resource type="DynamicFont" id=1]
 size = 14
@@ -38,7 +39,7 @@ position = Vector2( 226, 137 )
 position = Vector2( 297, 138 )
 
 [node name="Player" parent="." instance=ExtResource( 8 )]
-position = Vector2( 128.285, 289.143 )
+position = Vector2( 104.285, 180 )
 
 [node name="UI" type="Node2D" parent="."]
 editor/display_folded = true
@@ -130,6 +131,7 @@ position = Vector2( 300, 664 )
 position = Vector2( 468, 664 )
 
 [node name="QGrid" type="Node2D" parent="."]
+editor/display_folded = true
 
 [node name="CustGrid1" parent="QGrid" instance=ExtResource( 12 )]
 position = Vector2( 327, 300.807 )
@@ -157,3 +159,10 @@ position = Vector2( 400, 192 )
 
 [node name="CustGrid9" parent="QGrid" instance=ExtResource( 12 )]
 position = Vector2( 330, 192 )
+
+[node name="Transition" parent="." instance=ExtResource( 13 )]
+visible = false
+
+[node name="TutTimer" type="Timer" parent="."]
+wait_time = 2.5
+one_shot = true

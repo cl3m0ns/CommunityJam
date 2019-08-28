@@ -28,10 +28,14 @@ func _physics_process(delta):
 				$player.flip_h = true
 			move()
 	
-	get_item_collisions()
-	get_robot_collision()
-	get_open_collision()
-	get_bot_exit_collision()
+	if !GLOBAL.STORY_TIME:
+		get_robot_collision()
+		get_item_collisions()
+		get_open_collision()
+		get_bot_exit_collision()
+	else:
+		if Input.is_action_just_pressed("interact"):
+			get_parent().storyIndex += 1
 	
 	if holding_item:
 		get_cash_collision()
