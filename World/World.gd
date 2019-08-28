@@ -217,6 +217,7 @@ func _physics_process(delta):
 	
 	if storyDone && tutDone:
 		GLOBAL.STORY_TIME = false
+		GLOBAL.TUT_TIME = false
 		run_game_loop()
 	
 	if !storyDone:
@@ -226,7 +227,6 @@ func _physics_process(delta):
 		run_tut()
 
 func run_tut():
-	GLOBAL.STORY_TIME = true
 	if $TutTimer.is_stopped() && switchToTut:
 		$Transition.fade_in()
 		$TutTimer.wait_time = 3
@@ -234,7 +234,8 @@ func run_tut():
 		$TutTimer.start()
 		update_robot(tut1)
 		switchToTut = false
-	elif $TutTimer.is_stopped():
+	elif $TutTimer.is_stopped() && !switchToTut:
+		print(tutIndex)
 		match tutIndex:
 			1:
 				update_robot(tut1)
@@ -244,6 +245,11 @@ func run_tut():
 				update_robot(tut3)
 			4:
 				update_robot(tut4)
+				
+		if tutIndex > 4:
+			hide_bot_dialog()
+			storyDone = true
+			tutDone = true
 
 func run_story():
 	GLOBAL.STORY_TIME = true
@@ -258,7 +264,8 @@ func run_story():
 	
 	if storyIndex > 3:
 		if switchToTut:
-			GLOBAL.STORY_ENDING = true
+			GLOBAL.STORY_TIME = false
+			GLOBAL.TUT_TIME = true
 			$Transition.fade_out()
 			$TutTimer.wait_time = 3
 			$TutTimer.start()

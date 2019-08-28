@@ -9,8 +9,8 @@ var CURRENT_CUSTOMER = null
 var CURR_DAY = 0
 var DAY_CUST = [[1], [1,1,1,1], [1,1,1,1,1,1,1,1]]
 var STORY_TIME = false
+var TUT_TIME = false
 var FADING = false
-var STORY_ENDING = false
 func _ready():
 	randomize()
 	if !map_seed:
