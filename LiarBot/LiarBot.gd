@@ -7,7 +7,6 @@ func _ready():
 	$arrow.visible = false
 	$AnimationPlayer.play("idle")
 	defaultSpeed = $AnimationPlayer.get_speed_scale()
-	print(defaultSpeed)
 	
 func _physics_process(delta):
 	if isTalking:

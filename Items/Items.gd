@@ -35,7 +35,6 @@ func show():
 
 func go_home():
 	picked_up = false
-	print('going home')
 	set_global_position(homePos)
 	
 func fancy_particles():
