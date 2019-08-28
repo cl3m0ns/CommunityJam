@@ -292,6 +292,7 @@ func run_game_loop():
 func end_day():
 	GLOBAL.CURR_DAY += 1
 	GLOBAL.STORE_OPEN = false
+	$LiarBot.update_dialog()
 	var door = get_node("Door")
 	door.visible = true
 	startLoop = false

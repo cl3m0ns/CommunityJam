@@ -29,7 +29,6 @@ func _physics_process(delta):
 			move()
 	
 	if !GLOBAL.STORY_TIME && !GLOBAL.TUT_TIME:
-		print('game')
 		get_robot_collision()
 		get_item_collisions()
 		get_open_collision()
@@ -38,7 +37,6 @@ func _physics_process(delta):
 		if Input.is_action_just_pressed("interact"):
 			get_parent().storyIndex += 1
 	elif GLOBAL.TUT_TIME:
-		print('tut time')
 		if Input.is_action_just_pressed("interact"):
 			get_parent().tutIndex += 1
 	
@@ -116,9 +114,7 @@ func get_robot_collision():
 	if body && Input.is_action_just_pressed("interact"):
 		robot.showIcon = false
 		check_for_bot_exit = true
-		
-		if GLOBAL.STORE_OPEN:
-			robot.isTalking = true
+		robot.isTalking = true
 
 func get_bot_exit_collision():
 	var robot = get_parent().find_node("LiarBot")
@@ -140,6 +136,13 @@ func get_cash_collision():
 		get_parent().find_node("CashReg").showIcon = false
 
 func sell_item():
+	if GLOBAL.CURRENT_CUSTOMER == null:
+		item_were_holding.hide()
+		item_were_holding.go_home()
+		item_were_holding = null
+		holding_item = false
+		return
+	
 	var cashReg = get_parent().get_node('CashReg')
 	if GLOBAL.RIGHT_ITEM == item_were_holding:
 		cashReg.good = true

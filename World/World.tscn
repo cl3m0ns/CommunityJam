@@ -42,45 +42,44 @@ position = Vector2( 297, 138 )
 position = Vector2( 104.285, 180 )
 
 [node name="UI" type="Node2D" parent="."]
-editor/display_folded = true
 
 [node name="TimeLabel" type="Label" parent="UI"]
 margin_left = 20.0
 margin_top = 31.6372
-margin_right = 67.0
+margin_right = 156.0
 margin_bottom = 67.6372
 size_flags_horizontal = 0
 custom_fonts/font = SubResource( 1 )
 custom_constants/line_spacing = 0
-text = "Time:
+text = "Time: Forever
 "
 align = 1
 valign = 1
 
 [node name="GoalLabel" type="Label" parent="UI"]
-margin_left = 490.0
-margin_top = 12.9617
-margin_right = 583.0
-margin_bottom = 62.9617
+margin_left = 440.0
+margin_top = 10.0
+margin_right = 589.0
+margin_bottom = 60.0
 rect_pivot_offset = Vector2( 33.7581, 18.6795 )
 size_flags_horizontal = 0
 custom_fonts/font = SubResource( 1 )
 custom_constants/line_spacing = 0
-text = "GOAL: $25
+text = "Bank GOAL: $25
 "
 align = 2
 valign = 1
 
 [node name="MoneyLabel" type="Label" parent="UI"]
-margin_left = 515.575
-margin_top = 31.6372
-margin_right = 583.575
-margin_bottom = 81.6372
+margin_left = 400.0
+margin_top = 50.0
+margin_right = 591.0
+margin_bottom = 100.0
 rect_pivot_offset = Vector2( 33.7581, 18.6795 )
 size_flags_horizontal = 0
 custom_fonts/font = SubResource( 1 )
 custom_constants/line_spacing = 0
-text = "$0
+text = "Current Monies: $0
 "
 align = 2
 valign = 1
