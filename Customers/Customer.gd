@@ -18,6 +18,7 @@ var leaveShop = false
 func _ready():
 	$Happy.visible = false
 	$Sad.visible = false
+	$Talking.visible = false
 	var texure = choose([sprite1, sprite2, sprite3, sprite4, sprite5, sprite6])
 	$Sprite.set_texture(texure)
 	$AnimationPlayer.play("idle")
@@ -29,6 +30,9 @@ func _physics_process(delta):
 		move()
 	if leaveShop:
 		leave_shop()
+	
+	if $TalkTime.is_stopped():
+		$Talking.visible = false
 
 func do_outcome(isHappy):
 	if isHappy:
@@ -47,6 +51,8 @@ func stop():
 	$AnimationPlayer.play("idle")
 	start_moving = false
 	move_to_spot = Vector2.ZERO
+	if current_customer:
+		talk()
 
 func leave_shop():
 	var distToSpot = get_global_position().distance_to(GLOBAL.CUST_SPAWN_POS); 
@@ -62,3 +68,8 @@ func move():
 		if distToSpot < 12:
 			stop()
 		move_and_slide(moveDir, Vector2.ZERO)
+
+func talk():
+	$TalkTime.wait_time = 3
+	$TalkTime.start()
+	$Talking.visible = true

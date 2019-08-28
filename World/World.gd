@@ -207,7 +207,10 @@ func spawn_customers(numCustomers):
 		newCust.q_pos = 0
 		newCust.set_global_position(GLOBAL.CUST_SPAWN_POS)
 		newCust.move_to_spot = find_node("QGrid").get_child(0).get_global_position()
-		newCust.current_customer = true
+		
+		if customers.empty():
+			newCust.current_customer = true
+		
 		add_child(newCust)
 		customers.append(newCust)
 
