@@ -77,9 +77,7 @@ func get_open_collision():
 func open_store():
 	GLOBAL.STORE_OPEN = true
 	var parent = get_parent()
-	var store = parent.get_node("OpenStore")
 	var door = parent.get_node("Door")
-	store.get_node("Sprite").frame = 0
 	door.visible = false
 	get_parent().startLoop = true
 
@@ -136,10 +134,11 @@ func sell_item():
 	var cashReg = get_parent().get_node('CashReg')
 	if GLOBAL.RIGHT_ITEM == item_were_holding:
 		cashReg.good = true
-		get_parent().get_node("Customer").do_outcome(true)
+		GLOBAL.CURRENT_CUSTOMER.do_outcome(true)
 		get_parent().cash += 5
+		GLOBAL.NEXT_CUST = true
 	else:
-		get_parent().get_node("Customer").do_outcome(false)
+		GLOBAL.CURRENT_CUSTOMER.do_outcome(false)
 		cashReg.bad = true
 	item_were_holding.hide()
 	item_were_holding.go_home()

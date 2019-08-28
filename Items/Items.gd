@@ -39,6 +39,7 @@ func go_home():
 	set_global_position(homePos)
 	
 func fancy_particles():
+	show()
 	$ItemChange.emitting = true
 	$FancyTimer.wait_time = 0.75
 	$FancyTimer.start()

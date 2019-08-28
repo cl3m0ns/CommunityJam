@@ -175,10 +175,31 @@ func _physics_process(delta):
 	if GLOBAL.STORE_OPEN:
 		puzzle_loop()
 		startLoop = false
+	
+	if GLOBAL.NEXT_CUST:
+		GLOBAL.NEXT_CUST = false
+		#remove first customer
+		customers.pop_front()
+		if customers.empty():
+			end_day()
+		else:
+			set_customer_q_spots()
+			move_customers_to_spots()
+			pick_item()
+			update_robot()
+			
+
+func end_day():
+	GLOBAL.STORE_OPEN = false
+	var door = get_node("Door")
+	door.visible = true
+	startLoop = false
+	customers = []
 
 func puzzle_loop():
 	if startLoop:
-		spawn_customers([1])
+		spawn_customers([1,1])
+		set_customer_q_spots()
 		move_customers_to_spots()
 		pick_item()
 		update_robot()
@@ -201,16 +222,21 @@ func pick_item():
 	
 	item_sparkle()
 
+func set_customer_q_spots():
+	var qPos = 0
+	for cust in customers:
+		cust.q_pos = qPos
+		cust.move_to_spot = find_node("QGrid").get_child(qPos).get_global_position()
+		if cust == customers[0]:
+			print('setcurrent')
+			GLOBAL.CURRENT_CUSTOMER = cust
+			cust.current_customer = true
+		qPos += 1
+
 func spawn_customers(numCustomers):
 	for cust in numCustomers:
 		var newCust = customer.instance()
-		newCust.q_pos = 0
 		newCust.set_global_position(GLOBAL.CUST_SPAWN_POS)
-		newCust.move_to_spot = find_node("QGrid").get_child(0).get_global_position()
-		
-		if customers.empty():
-			newCust.current_customer = true
-		
 		add_child(newCust)
 		customers.append(newCust)
 
