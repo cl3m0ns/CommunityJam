@@ -128,20 +128,32 @@ position = Vector2( 468, 664 )
 
 [node name="QGrid" type="Node2D" parent="."]
 
-[node name="CustGrid" parent="QGrid" instance=ExtResource( 12 )]
-position = Vector2( 348, 302 )
+[node name="CustGrid1" parent="QGrid" instance=ExtResource( 12 )]
+position = Vector2( 327, 310 )
 
 [node name="CustGrid2" parent="QGrid" instance=ExtResource( 12 )]
-position = Vector2( 435, 302 )
+position = Vector2( 380, 310 )
 
 [node name="CustGrid3" parent="QGrid" instance=ExtResource( 12 )]
-position = Vector2( 518, 302 )
+position = Vector2( 432.84, 310 )
 
 [node name="CustGrid4" parent="QGrid" instance=ExtResource( 12 )]
-position = Vector2( 518, 237 )
+position = Vector2( 489, 310 )
 
 [node name="CustGrid5" parent="QGrid" instance=ExtResource( 12 )]
-position = Vector2( 518, 177 )
+position = Vector2( 540, 310 )
 
 [node name="CustGrid6" parent="QGrid" instance=ExtResource( 12 )]
-position = Vector2( 435, 177 )
+position = Vector2( 540, 260 )
+
+[node name="CustGrid7" parent="QGrid" instance=ExtResource( 12 )]
+position = Vector2( 540, 213.807 )
+
+[node name="CustGrid8" parent="QGrid" instance=ExtResource( 12 )]
+position = Vector2( 495, 180 )
+
+[node name="CustGrid9" parent="QGrid" instance=ExtResource( 12 )]
+position = Vector2( 444.84, 180 )
+
+[node name="CustGrid10" parent="QGrid" instance=ExtResource( 12 )]
+position = Vector2( 390, 180 )

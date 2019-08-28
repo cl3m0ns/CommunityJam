@@ -108,8 +108,10 @@ func get_robot_collision():
 		
 	if body && Input.is_action_just_pressed("interact"):
 		robot.showIcon = false
-		robot.isTalking = true
 		check_for_bot_exit = true
+		
+		if GLOBAL.STORE_OPEN:
+			robot.isTalking = true
 
 func get_bot_exit_collision():
 	var robot = get_parent().find_node("LiarBot")
