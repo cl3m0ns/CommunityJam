@@ -44,10 +44,10 @@ position = Vector2( 104.285, 180 )
 [node name="UI" type="Node2D" parent="."]
 
 [node name="TimeLabel" type="Label" parent="UI"]
-margin_left = 20.0
-margin_top = 31.6372
-margin_right = 156.0
-margin_bottom = 67.6372
+margin_left = 10.0
+margin_top = 10.0
+margin_right = 170.0
+margin_bottom = 46.0
 size_flags_horizontal = 0
 custom_fonts/font = SubResource( 1 )
 custom_constants/line_spacing = 0
@@ -57,10 +57,9 @@ align = 1
 valign = 1
 
 [node name="GoalLabel" type="Label" parent="UI"]
-margin_left = 440.0
-margin_top = 10.0
-margin_right = 589.0
-margin_bottom = 60.0
+margin_left = 350.0
+margin_right = 590.0
+margin_bottom = 50.0
 rect_pivot_offset = Vector2( 33.7581, 18.6795 )
 size_flags_horizontal = 0
 custom_fonts/font = SubResource( 1 )
@@ -71,10 +70,10 @@ align = 2
 valign = 1
 
 [node name="MoneyLabel" type="Label" parent="UI"]
-margin_left = 400.0
-margin_top = 50.0
+margin_left = 340.0
+margin_top = 31.6372
 margin_right = 591.0
-margin_bottom = 100.0
+margin_bottom = 81.6372
 rect_pivot_offset = Vector2( 33.7581, 18.6795 )
 size_flags_horizontal = 0
 custom_fonts/font = SubResource( 1 )
@@ -130,7 +129,6 @@ position = Vector2( 300, 664 )
 position = Vector2( 468, 664 )
 
 [node name="QGrid" type="Node2D" parent="."]
-editor/display_folded = true
 
 [node name="CustGrid1" parent="QGrid" instance=ExtResource( 12 )]
 position = Vector2( 327, 300.807 )
@@ -151,17 +149,43 @@ position = Vector2( 540, 240 )
 position = Vector2( 540, 192 )
 
 [node name="CustGrid7" parent="QGrid" instance=ExtResource( 12 )]
-position = Vector2( 468, 192 )
+position = Vector2( 480, 192 )
 
 [node name="CustGrid8" parent="QGrid" instance=ExtResource( 12 )]
-position = Vector2( 400, 192 )
+position = Vector2( 420, 192 )
 
 [node name="CustGrid9" parent="QGrid" instance=ExtResource( 12 )]
-position = Vector2( 330, 192 )
+position = Vector2( 360, 192 )
+
+[node name="CustGrid10" parent="QGrid" instance=ExtResource( 12 )]
+position = Vector2( 300, 190 )
+
+[node name="CustGrid11" parent="QGrid" instance=ExtResource( 12 )]
+position = Vector2( 240.016, 190 )
+
+[node name="CustGrid12" parent="QGrid" instance=ExtResource( 12 )]
+position = Vector2( 180, 189 )
+
+[node name="CustGrid13" parent="QGrid" instance=ExtResource( 12 )]
+position = Vector2( 120, 189 )
+
+[node name="CustGrid14" parent="QGrid" instance=ExtResource( 12 )]
+position = Vector2( 60, 190 )
+
+[node name="CustGrid15" parent="QGrid" instance=ExtResource( 12 )]
+position = Vector2( 60, 240 )
+
+[node name="CustGrid16" parent="QGrid" instance=ExtResource( 12 )]
+position = Vector2( 60, 296.571 )
 
 [node name="Transition" parent="." instance=ExtResource( 13 )]
 visible = false
 
 [node name="TutTimer" type="Timer" parent="."]
 wait_time = 2.5
+one_shot = true
+
+[node name="LoopTimer" type="Timer" parent="."]
+process_mode = 0
+wait_time = 100.0
 one_shot = true

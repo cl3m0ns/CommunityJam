@@ -147,7 +147,10 @@ func sell_item():
 	if GLOBAL.RIGHT_ITEM == item_were_holding:
 		cashReg.good = true
 		GLOBAL.CURRENT_CUSTOMER.do_outcome(true)
-		get_parent().cash += 5
+		if get_parent().firstGuess:
+			get_parent().cash += 10
+		else:
+			get_parent().cash += 5
 		GLOBAL.NEXT_CUST = true
 	else:
 		GLOBAL.CURRENT_CUSTOMER.do_outcome(false)
@@ -156,6 +159,7 @@ func sell_item():
 	item_were_holding.go_home()
 	item_were_holding = null
 	holding_item = false
+	get_parent().firstGuess = false
 
 func get_inputs():
 	var move_up = Input.is_action_pressed("move_up");

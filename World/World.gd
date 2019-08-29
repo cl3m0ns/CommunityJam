@@ -1,12 +1,13 @@
 extends Node2D
 
 var cash = 0
-var lastCash = 0
 var customer = preload("res://Customers/Customer.tscn")
 var items = []
 var customers = []
 var startLoop = false
-
+var loop_times = [100.1, 100.1, 90.1, 80.1, 70.1, 70.1, 70.1, 70.1,70.1,70.1,70.1,70.1,70.1,70.1,70.1,70.1]
+var goal_num = [55, 115, 180, 250, 330, 420, 520, 630,745,865,990,1120,1250,1380,1510,1640, 1770]
+var goal = 50
 var sprite1 = preload("res://PuzzleDialog/blue_dots.png")
 var sprite2 = preload("res://PuzzleDialog/blue_solid.png")
 var sprite3 = preload("res://PuzzleDialog/blue_striped.png")
@@ -32,6 +33,7 @@ var sprite22 = preload("res://PuzzleDialog/yellow_dots.png")
 var sprite23 = preload("res://PuzzleDialog/yellow_solid.png")
 var sprite24 = preload("res://PuzzleDialog/yellow_striped.png")
 
+var speedBoots = preload("res://Upgrades/Boots.tscn")
 
 var storyDone = false
 var storyIndex = 1
@@ -45,7 +47,7 @@ var tut1 = preload("res://TutorialDialog/tutorial_1.png")
 var tut2 = preload("res://TutorialDialog/tutorial_2.png")
 var tut3 = preload("res://TutorialDialog/tutorial_3.png")
 var tut4 = preload("res://TutorialDialog/tutorial_4.png")
-
+var firstGuess = true
 var currentPuzzle = null
 var puzzle = [
 	{
@@ -211,9 +213,23 @@ func _ready():
 	$Transition.fade_in()
 
 func _physics_process(delta):
+	$UI/TimeLabel.set_text("Time: " + String(round($LoopTimer.time_left)))
+	$UI/MoneyLabel.set_text( "$" + String(cash))
+	$UI/GoalLabel.set_text("Bank Goal: $" + String(goal))
 	
-	if lastCash != cash:
-		$UI/MoneyLabel.set_text( "$" + String(cash))
+	if GLOBAL.RESET:
+		GLOBAL.RESET = false
+		#delete this after
+		storyDone = true
+		tutDone = true
+		$Player.visible = true
+		cash = 0
+		GLOBAL.CURR_DAY = 0
+		GLOBAL.RIGHT_ITEM = null
+		GLOBAL.STORE_OPEN = false
+		GLOBAL.NEXT_CUST = false
+		GLOBAL.CURRENT_CUSTOMER = null
+		#end of delete
 	
 	if storyDone && tutDone:
 		GLOBAL.STORY_TIME = false
@@ -274,6 +290,7 @@ func run_story():
 
 func run_game_loop():
 	if GLOBAL.STORE_OPEN:
+		goal = goal_num[GLOBAL.CURR_DAY]
 		puzzle_loop()
 		startLoop = false
 	
@@ -289,22 +306,75 @@ func run_game_loop():
 			pick_item()
 			update_robot(currentPuzzle.spriteName)
 
+func do_speed_up():
+	if $Player.SPEED == 150:
+		$Player.SPEED = 200
+		var boots = speedBoots.instance()
+		boots.find_node("Upgraded").visible = false
+		add_child(boots)
+	else:
+		$Player.SPEED += 50
+		var boots = speedBoots.instance()
+		boots.find_node("Unlocked").visible = false
+		add_child(boots)
+
+func check_for_upgrade():
+	if GLOBAL.CURR_DAY == 3:
+		do_speed_up()
+	if GLOBAL.CURR_DAY == 5:
+		do_speed_up()
+	if GLOBAL.CURR_DAY == 7:
+		do_speed_up()
+	if GLOBAL.CURR_DAY == 9:
+		do_speed_up()
+	if GLOBAL.CURR_DAY == 11:
+		do_speed_up()
+	if GLOBAL.CURR_DAY == 13:
+		do_speed_up()
+	if GLOBAL.CURR_DAY == 15:
+		do_speed_up()
+
 func end_day():
+	var extraIncome = 0
+	if round($LoopTimer.time_left) > 0:
+		extraIncome = 50
+	cash += extraIncome
+	$LoopTimer.stop()
 	GLOBAL.CURR_DAY += 1
+	check_for_upgrade()
+	
 	GLOBAL.STORE_OPEN = false
 	$LiarBot.update_dialog()
 	var door = get_node("Door")
 	door.visible = true
 	startLoop = false
 	customers = []
+	
+	do_we_lose()
+
+func do_we_lose():
+	print('cur day: ',GLOBAL.CURR_DAY)
+	print('what we checking: ', goal_num[GLOBAL.CURR_DAY-1])
+	print('what we have: ', cash)
+	if cash < goal_num[GLOBAL.CURR_DAY-1]:
+		get_tree().change_scene("res://World/Lose.tscn")
 
 func puzzle_loop():
 	if startLoop:
+		var time = int(loop_times[GLOBAL.CURR_DAY])
+		$LoopTimer.set_wait_time(time)
+		$LoopTimer.start()
 		spawn_customers(GLOBAL.DAY_CUST[GLOBAL.CURR_DAY])
 		set_customer_q_spots()
 		move_customers_to_spots()
 		pick_item()
 		update_robot(currentPuzzle.spriteName)
+	
+	if $LoopTimer.is_stopped():
+		for cust in customers:
+			cust.leaveShop = true
+			cust.do_outcome(false)
+		end_day()
 
 func update_robot(sprite):
 	$LiarBot/RoboDialog.set_sprite(sprite)
@@ -346,6 +416,8 @@ func set_customer_q_spots():
 		cust.move_to_spot = find_node("QGrid").get_child(qPos).get_global_position()
 		if cust == customers[0]:
 			GLOBAL.CURRENT_CUSTOMER = cust
+			cust.z_index = 2
+			firstGuess = true
 			cust.current_customer = true
 		qPos += 1
 

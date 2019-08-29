@@ -10,6 +10,8 @@ var taunt2 = preload("res://TauntTalk/closed_2.png")
 var taunt3 = preload("res://TauntTalk/closed_3.png")
 var taunt4 = preload("res://TauntTalk/closed_4.png")
 var taunt5 = preload("res://TauntTalk/closed_5.png")
+var taunt6 = preload("res://TauntTalk/closed_6.png")
+var taunt7 = preload("res://TauntTalk/closed_7.png")
 
 func _ready():
 	$arrow.visible = false
@@ -28,7 +30,7 @@ func _physics_process(delta):
 		$arrow.visible = false
 
 func update_dialog():
-	var sprite = choose([taunt2, taunt3, taunt4, taunt5])
+	var sprite = choose([taunt2, taunt3, taunt4, taunt5, taunt6, taunt7])
 	match GLOBAL.CURR_DAY:
 		0:
 			sprite = tut4
