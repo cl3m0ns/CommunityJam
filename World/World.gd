@@ -219,7 +219,6 @@ func _physics_process(delta):
 	
 	if GLOBAL.RESET:
 		GLOBAL.RESET = false
-		#delete this after
 		storyDone = true
 		tutDone = true
 		$Player.visible = true
@@ -229,6 +228,8 @@ func _physics_process(delta):
 		GLOBAL.STORE_OPEN = false
 		GLOBAL.NEXT_CUST = false
 		GLOBAL.CURRENT_CUSTOMER = null
+		#delete this after
+		cash = 100
 		#end of delete
 	
 	if storyDone && tutDone:
@@ -340,7 +341,13 @@ func end_day():
 		extraIncome = 50
 	cash += extraIncome
 	$LoopTimer.stop()
+	GLOBAL.CURRENT_CUSTOMER = null
 	GLOBAL.CURR_DAY += 1
+	if $Player.item_were_holding != null:
+		$Player.item_were_holding.go_home()
+		$Player.item_were_holding = null
+		$Player.holding_item = false
+	
 	check_for_upgrade()
 	
 	GLOBAL.STORE_OPEN = false
