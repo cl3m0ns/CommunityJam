@@ -29,7 +29,7 @@ var STORY_TIME = false
 var TUT_TIME = false
 var FADING = false
 var RESET = true
-
+var LOSE_CASH = 0
 func _ready():
 	randomize()
 	if !map_seed:

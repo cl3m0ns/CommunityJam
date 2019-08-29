@@ -5,7 +5,7 @@ var customer = preload("res://Customers/Customer.tscn")
 var items = []
 var customers = []
 var startLoop = false
-var loop_times = [100.1, 100.1, 90.1, 80.1, 70.1, 70.1, 70.1, 70.1,70.1,70.1,70.1,70.1,70.1,70.1,70.1,70.1]
+var loop_times = [10.1, 100.1, 90.1, 80.1, 70.1, 70.1, 70.1, 70.1,70.1,70.1,70.1,70.1,70.1,70.1,70.1,70.1]
 var goal_num = [55, 115, 180, 250, 330, 420, 520, 630,745,865,990,1120,1250,1380,1510,1640, 1770]
 var goal = 50
 var sprite1 = preload("res://PuzzleDialog/blue_dots.png")
@@ -353,10 +353,8 @@ func end_day():
 	do_we_lose()
 
 func do_we_lose():
-	print('cur day: ',GLOBAL.CURR_DAY)
-	print('what we checking: ', goal_num[GLOBAL.CURR_DAY-1])
-	print('what we have: ', cash)
 	if cash < goal_num[GLOBAL.CURR_DAY-1]:
+		GLOBAL.LOSE_CASH = cash
 		get_tree().change_scene("res://World/Lose.tscn")
 
 func puzzle_loop():
