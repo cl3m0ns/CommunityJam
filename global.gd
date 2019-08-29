@@ -12,6 +12,9 @@ var regular_goal = [55, 115, 180, 250, 330, 420, 520, 630,745,865,990,1120,1250,
 var hard_goal = [55, 115, 180, 250, 330, 420, 520, 630,745,865,990,1120,1250,1380,1510,1640, 1770]
 var GOALS = easy_goal
 
+var MUSIC = true
+var SFX = true
+
 var RIGHT_ITEM = null
 var STORE_OPEN = false
 var CUST_SPAWN_POS = Vector2(300, 150)

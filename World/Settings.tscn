@@ -1,8 +1,9 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://World/Settings.gd" type="Script" id=1]
 [ext_resource path="res://Transition/Transition.tscn" type="PackedScene" id=2]
 [ext_resource path="res://nulshock bd.ttf" type="DynamicFontData" id=3]
+[ext_resource path="res://Sound/title and end.wav" type="AudioStream" id=4]
 
 [sub_resource type="DynamicFont" id=1]
 font_data = ExtResource( 3 )
@@ -19,6 +20,10 @@ font_data = ExtResource( 3 )
 size = 12
 font_data = ExtResource( 3 )
 
+[sub_resource type="DynamicFont" id=5]
+size = 20
+font_data = ExtResource( 3 )
+
 [node name="Settings" type="Node2D"]
 script = ExtResource( 1 )
 
@@ -26,41 +31,51 @@ script = ExtResource( 1 )
 
 [node name="EasyMode" type="Button" parent="Transition"]
 margin_left = 27.0
-margin_top = 167.0
+margin_top = 447.0
 margin_right = 280.0
-margin_bottom = 210.0
+margin_bottom = 490.0
 custom_fonts/font = SubResource( 1 )
 text = "no challenge please"
 
 [node name="RegularMode" type="Button" parent="Transition"]
 margin_left = 25.9474
-margin_top = 299.065
+margin_top = 569.065
 margin_right = 278.947
-margin_bottom = 342.065
+margin_bottom = 612.065
 custom_fonts/font = SubResource( 1 )
-text = "difficult but fair"
+text = "regular"
 
 [node name="HardMode" type="Button" parent="Transition"]
 margin_left = 25.0508
-margin_top = 433.799
+margin_top = 693.799
 margin_right = 278.051
-margin_bottom = 476.799
+margin_bottom = 736.799
 custom_fonts/font = SubResource( 1 )
 text = "punish me"
 
 [node name="Label" type="Label" parent="Transition"]
-margin_left = 106.0
-margin_top = 34.0
-margin_right = 496.0
-margin_bottom = 69.0
+margin_left = 8.0
+margin_top = 374.0
+margin_right = 595.0
+margin_bottom = 409.0
 custom_fonts/font = SubResource( 2 )
 text = "choose a difficulty"
+align = 1
+
+[node name="Label5" type="Label" parent="Transition"]
+margin_left = 6.80945
+margin_top = 49.1803
+margin_right = 593.809
+margin_bottom = 84.1803
+custom_fonts/font = SubResource( 2 )
+text = "settings"
+align = 1
 
 [node name="Label2" type="Label" parent="Transition"]
 margin_left = 303.278
-margin_top = 168.636
+margin_top = 448.636
 margin_right = 585.278
-margin_bottom = 241.636
+margin_bottom = 521.636
 custom_fonts/font = SubResource( 3 )
 text = "Not recommended:
     - impossible to lose.
@@ -69,9 +84,9 @@ text = "Not recommended:
 
 [node name="Label3" type="Label" parent="Transition"]
 margin_left = 304.25
-margin_top = 301.081
+margin_top = 571.081
 margin_right = 596.25
-margin_bottom = 370.081
+margin_bottom = 640.081
 custom_fonts/font = SubResource( 4 )
 text = "medium challenge:
     - mistakes can be made
@@ -79,13 +94,50 @@ text = "medium challenge:
 
 [node name="Label4" type="Label" parent="Transition"]
 margin_left = 304.952
-margin_top = 435.642
+margin_top = 695.642
 margin_right = 596.952
-margin_bottom = 504.642
+margin_bottom = 764.642
 custom_fonts/font = SubResource( 4 )
 text = "i seek a challenge:
     - no mistakes allowed
 	    - difficult time limits"
+
+[node name="SoundEffectsToggle" type="CheckButton" parent="Transition"]
+margin_left = 300.406
+margin_top = 164.379
+margin_right = 376.406
+margin_bottom = 204.379
+pressed = true
+
+[node name="MusicToggle" type="CheckButton" parent="Transition"]
+margin_left = 300.406
+margin_top = 99.379
+margin_right = 376.406
+margin_bottom = 139.379
+pressed = true
+
+[node name="Label6" type="Label" parent="Transition"]
+margin_left = 214.254
+margin_top = 106.575
+margin_right = 292.254
+margin_bottom = 131.575
+custom_fonts/font = SubResource( 5 )
+text = "music"
+
+[node name="Label7" type="Label" parent="Transition"]
+margin_left = 84.2537
+margin_top = 173.575
+margin_right = 292.254
+margin_bottom = 198.575
+custom_fonts/font = SubResource( 5 )
+text = "Sound effects"
+
+[node name="music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 4 )
+volume_db = -25.0
+autoplay = true
 [connection signal="pressed" from="Transition/EasyMode" to="." method="_on_EasyMode_pressed"]
 [connection signal="pressed" from="Transition/RegularMode" to="." method="_on_RegularMode_pressed"]
 [connection signal="pressed" from="Transition/HardMode" to="." method="_on_HardMode_pressed"]
+[connection signal="toggled" from="Transition/SoundEffectsToggle" to="." method="_on_SoundEffectsToggle_toggled"]
+[connection signal="toggled" from="Transition/MusicToggle" to="." method="_on_MusicToggle_toggled"]

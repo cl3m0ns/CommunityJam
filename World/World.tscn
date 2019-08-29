@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://World/World.gd" type="Script" id=1]
 [ext_resource path="res://Background/Background.tscn" type="PackedScene" id=2]
@@ -13,6 +13,7 @@
 [ext_resource path="res://Tiles/StandBox.tscn" type="PackedScene" id=11]
 [ext_resource path="res://Tiles/CustGrid.tscn" type="PackedScene" id=12]
 [ext_resource path="res://Transition/Transition.tscn" type="PackedScene" id=13]
+[ext_resource path="res://Sound/song1.wav" type="AudioStream" id=14]
 
 [sub_resource type="DynamicFont" id=1]
 use_mipmaps = true
@@ -186,3 +187,7 @@ one_shot = true
 process_mode = 0
 wait_time = 100.0
 one_shot = true
+
+[node name="Music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 14 )
+volume_db = -30.0

@@ -200,6 +200,12 @@ var switchToTut = true
 
 func _ready():
 	#set up items
+	if !GLOBAL.MUSIC:
+		$Music.stop()
+	elif GLOBAL.MUSIC && !$Music.is_playing():
+		$Music.play()
+		$Music.volume_db = -30
+
 	var item1 = find_node("ITEMS").get_child(0)
 	var item2 = find_node("ITEMS").get_child(1)
 	var item3 = find_node("ITEMS").get_child(2)
@@ -229,7 +235,7 @@ func _physics_process(delta):
 		GLOBAL.NEXT_CUST = false
 		GLOBAL.CURRENT_CUSTOMER = null
 		#delete this after
-		cash = 100
+		cash = 0
 		#end of delete
 	
 	if storyDone && tutDone:

@@ -6,11 +6,16 @@ extends Node2D
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	if GLOBAL.MUSIC:
+		$music.play()
 	pass # Replace with function body.
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
+func _process(delta):
+	if !GLOBAL.MUSIC:
+		$music.stop()
+	elif GLOBAL.MUSIC && !$music.is_playing():
+		$music.play()
 
 
 func _on_EasyMode_pressed():
@@ -32,3 +37,18 @@ func _on_HardMode_pressed():
 	
 func start_game():
 	get_tree().change_scene("res://World/World.tscn")
+
+func _on_MusicToggle_toggled(button_pressed):
+	if button_pressed:
+		GLOBAL.MUSIC = true
+	else:
+		GLOBAL.MUSIC = false
+	pass # Replace with function body.
+
+
+func _on_SoundEffectsToggle_toggled(button_pressed):
+	if button_pressed:
+		GLOBAL.SFX = true
+	else:
+		GLOBAL.SFX = false
+	pass # Replace with function body.
