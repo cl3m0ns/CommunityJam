@@ -11,3 +11,5 @@ texture = ExtResource( 2 )
 centered = false
 
 [node name="ContinueTImer" type="Timer" parent="."]
+one_shot = true
+autostart = true
