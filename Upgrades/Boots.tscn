@@ -57,6 +57,7 @@ tracks/3/keys = {
 }
 
 [node name="Boots" type="Node2D"]
+z_index = 5
 script = ExtResource( 1 )
 
 [node name="Unlocked" type="Sprite" parent="."]

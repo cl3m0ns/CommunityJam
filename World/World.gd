@@ -214,7 +214,7 @@ func _ready():
 
 func _physics_process(delta):
 	$UI/TimeLabel.set_text("Time: " + String(round($LoopTimer.time_left)))
-	$UI/MoneyLabel.set_text( "$" + String(cash))
+	$UI/MoneyLabel.set_text( "Current Monies: $" + String(cash))
 	$UI/GoalLabel.set_text("Bank Goal: $" + String(goal))
 	
 	if GLOBAL.RESET:

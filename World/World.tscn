@@ -15,7 +15,6 @@
 [ext_resource path="res://Transition/Transition.tscn" type="PackedScene" id=13]
 
 [sub_resource type="DynamicFont" id=1]
-size = 14
 use_mipmaps = true
 font_data = ExtResource( 9 )
 
@@ -45,15 +44,14 @@ position = Vector2( 104.285, 180 )
 
 [node name="TimeLabel" type="Label" parent="UI"]
 margin_left = 10.0
-margin_top = 10.0
+margin_top = 6.13113
 margin_right = 170.0
-margin_bottom = 46.0
+margin_bottom = 48.1311
 size_flags_horizontal = 0
 custom_fonts/font = SubResource( 1 )
 custom_constants/line_spacing = 0
 text = "Time: Forever
 "
-align = 1
 valign = 1
 
 [node name="GoalLabel" type="Label" parent="UI"]
@@ -71,9 +69,9 @@ valign = 1
 
 [node name="MoneyLabel" type="Label" parent="UI"]
 margin_left = 340.0
-margin_top = 31.6372
+margin_top = 40.0
 margin_right = 591.0
-margin_bottom = 81.6372
+margin_bottom = 90.0
 rect_pivot_offset = Vector2( 33.7581, 18.6795 )
 size_flags_horizontal = 0
 custom_fonts/font = SubResource( 1 )
@@ -84,7 +82,6 @@ align = 2
 valign = 1
 
 [node name="ITEMS" type="Node2D" parent="."]
-editor/display_folded = true
 
 [node name="Items1" parent="ITEMS" instance=ExtResource( 10 )]
 position = Vector2( 132, 507 )
@@ -146,37 +143,37 @@ position = Vector2( 540, 300.807 )
 position = Vector2( 540, 240 )
 
 [node name="CustGrid6" parent="QGrid" instance=ExtResource( 12 )]
-position = Vector2( 540, 192 )
+position = Vector2( 540, 170 )
 
 [node name="CustGrid7" parent="QGrid" instance=ExtResource( 12 )]
-position = Vector2( 480, 192 )
+position = Vector2( 480, 170 )
 
 [node name="CustGrid8" parent="QGrid" instance=ExtResource( 12 )]
-position = Vector2( 420, 192 )
+position = Vector2( 420, 170 )
 
 [node name="CustGrid9" parent="QGrid" instance=ExtResource( 12 )]
-position = Vector2( 360, 192 )
+position = Vector2( 360, 170 )
 
 [node name="CustGrid10" parent="QGrid" instance=ExtResource( 12 )]
-position = Vector2( 300, 190 )
+position = Vector2( 300, 170 )
 
 [node name="CustGrid11" parent="QGrid" instance=ExtResource( 12 )]
-position = Vector2( 240.016, 190 )
+position = Vector2( 240.016, 170 )
 
 [node name="CustGrid12" parent="QGrid" instance=ExtResource( 12 )]
-position = Vector2( 180, 189 )
+position = Vector2( 180, 170 )
 
 [node name="CustGrid13" parent="QGrid" instance=ExtResource( 12 )]
-position = Vector2( 120, 189 )
+position = Vector2( 120, 170 )
 
 [node name="CustGrid14" parent="QGrid" instance=ExtResource( 12 )]
-position = Vector2( 60, 190 )
+position = Vector2( 60, 170 )
 
 [node name="CustGrid15" parent="QGrid" instance=ExtResource( 12 )]
 position = Vector2( 60, 240 )
 
 [node name="CustGrid16" parent="QGrid" instance=ExtResource( 12 )]
-position = Vector2( 60, 296.571 )
+position = Vector2( 60, 310 )
 
 [node name="Transition" parent="." instance=ExtResource( 13 )]
 visible = false
