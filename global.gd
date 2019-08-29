@@ -1,6 +1,17 @@
 extends Node
 
 var map_seed = 0
+
+var easy_time = [10.1, 100.1, 90.1, 80.1, 70.1, 70.1, 70.1, 70.1,70.1,70.1,70.1,70.1,70.1,70.1,70.1,70.1]
+var regular_time = easy_time
+var hard_time = easy_time
+var LOOP_TIME = easy_time
+
+var easy_goal = [55, 115, 180, 250, 330, 420, 520, 630,745,865,990,1120,1250,1380,1510,1640, 1770]
+var regular_goal = [55, 115, 180, 250, 330, 420, 520, 630,745,865,990,1120,1250,1380,1510,1640, 1770]
+var hard_goal = [55, 115, 180, 250, 330, 420, 520, 630,745,865,990,1120,1250,1380,1510,1640, 1770]
+var GOALS = easy_goal
+
 var RIGHT_ITEM = null
 var STORE_OPEN = false
 var CUST_SPAWN_POS = Vector2(300, 150)

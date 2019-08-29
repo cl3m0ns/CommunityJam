@@ -5,9 +5,9 @@ var customer = preload("res://Customers/Customer.tscn")
 var items = []
 var customers = []
 var startLoop = false
-var loop_times = [10.1, 100.1, 90.1, 80.1, 70.1, 70.1, 70.1, 70.1,70.1,70.1,70.1,70.1,70.1,70.1,70.1,70.1]
-var goal_num = [55, 115, 180, 250, 330, 420, 520, 630,745,865,990,1120,1250,1380,1510,1640, 1770]
+
 var goal = 50
+
 var sprite1 = preload("res://PuzzleDialog/blue_dots.png")
 var sprite2 = preload("res://PuzzleDialog/blue_solid.png")
 var sprite3 = preload("res://PuzzleDialog/blue_striped.png")
@@ -291,7 +291,7 @@ func run_story():
 
 func run_game_loop():
 	if GLOBAL.STORE_OPEN:
-		goal = goal_num[GLOBAL.CURR_DAY]
+		goal = GLOBAL.GOALS[GLOBAL.CURR_DAY]
 		puzzle_loop()
 		startLoop = false
 	
@@ -360,13 +360,13 @@ func end_day():
 	do_we_lose()
 
 func do_we_lose():
-	if cash < goal_num[GLOBAL.CURR_DAY-1]:
+	if cash < GLOBAL.GOALS[GLOBAL.CURR_DAY-1]:
 		GLOBAL.LOSE_CASH = cash
 		get_tree().change_scene("res://World/Lose.tscn")
 
 func puzzle_loop():
 	if startLoop:
-		var time = int(loop_times[GLOBAL.CURR_DAY])
+		var time = int(GLOBAL.LOOP_TIME[GLOBAL.CURR_DAY])
 		$LoopTimer.set_wait_time(time)
 		$LoopTimer.start()
 		spawn_customers(GLOBAL.DAY_CUST[GLOBAL.CURR_DAY])

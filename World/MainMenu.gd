@@ -10,4 +10,4 @@ func _ready():
 
 func _physics_process(delta):
 	if Input.is_action_pressed("interact") && $ContinueTImer.is_stopped():
-		get_tree().change_scene("res://World/World.tscn")
+		get_tree().change_scene("res://World/Settings.tscn")
