@@ -110,6 +110,12 @@ margin_right = 376.406
 margin_bottom = 204.379
 pressed = true
 
+[node name="SkipTutorial" type="CheckButton" parent="Transition"]
+margin_left = 300.406
+margin_top = 216.379
+margin_right = 376.406
+margin_bottom = 256.379
+
 [node name="MusicToggle" type="CheckButton" parent="Transition"]
 margin_left = 300.406
 margin_top = 99.379
@@ -133,6 +139,14 @@ margin_bottom = 198.575
 custom_fonts/font = SubResource( 5 )
 text = "Sound effects"
 
+[node name="Label8" type="Label" parent="Transition"]
+margin_left = 84.2537
+margin_top = 223.575
+margin_right = 292.254
+margin_bottom = 248.575
+custom_fonts/font = SubResource( 5 )
+text = "Skip tutorial"
+
 [node name="music" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 4 )
 volume_db = -25.0
@@ -145,4 +159,5 @@ volume_db = -35.0
 [connection signal="pressed" from="Transition/RegularMode" to="." method="_on_RegularMode_pressed"]
 [connection signal="pressed" from="Transition/HardMode" to="." method="_on_HardMode_pressed"]
 [connection signal="toggled" from="Transition/SoundEffectsToggle" to="." method="_on_SoundEffectsToggle_toggled"]
+[connection signal="toggled" from="Transition/SkipTutorial" to="." method="_on_SkipTutorial_toggled"]
 [connection signal="toggled" from="Transition/MusicToggle" to="." method="_on_MusicToggle_toggled"]

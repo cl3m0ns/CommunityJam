@@ -74,3 +74,10 @@ func _on_SoundEffectsToggle_toggled(button_pressed):
 	else:
 		GLOBAL.SFX = false
 	pass # Replace with function body.
+
+
+func _on_SkipTutorial_toggled(button_pressed):
+	if button_pressed:
+		GLOBAL.RESET = true
+	else:
+		GLOBAL.RESET = false
