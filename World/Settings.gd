@@ -23,6 +23,7 @@ func _on_EasyMode_pressed():
 		$select.stop()
 	elif GLOBAL.SFX && !$select.is_playing():
 		$select.play()
+	
 	GLOBAL.LOOP_TIME = GLOBAL.easy_time
 	GLOBAL.GOALS = GLOBAL.easy_goal
 	start_game()
@@ -33,6 +34,7 @@ func _on_RegularMode_pressed():
 		$select.stop()
 	elif GLOBAL.SFX && !$select.is_playing():
 		$select.play()
+	GLOBAL.REG = true
 	GLOBAL.LOOP_TIME = GLOBAL.regular_time
 	GLOBAL.GOALS = GLOBAL.regular_goal
 	start_game()
@@ -43,6 +45,7 @@ func _on_HardMode_pressed():
 		$select.stop()
 	elif GLOBAL.SFX && !$select.is_playing():
 		$select.play()
+	GLOBAL.HARD = true
 	GLOBAL.LOOP_TIME = GLOBAL.hard_time
 	GLOBAL.GOALS = GLOBAL.hard_goal
 	start_game()

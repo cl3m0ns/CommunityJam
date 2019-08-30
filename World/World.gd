@@ -258,7 +258,6 @@ func run_tut():
 		update_robot(tut1)
 		switchToTut = false
 	elif $TutTimer.is_stopped() && !switchToTut:
-		print(tutIndex)
 		match tutIndex:
 			1:
 				update_robot(tut1)
@@ -296,10 +295,6 @@ func run_story():
 
 
 func run_game_loop():
-	if GLOBAL.STORE_OPEN:
-		goal = GLOBAL.GOALS[GLOBAL.CURR_DAY]
-		puzzle_loop()
-		startLoop = false
 	
 	if GLOBAL.NEXT_CUST:
 		GLOBAL.NEXT_CUST = false
@@ -312,6 +307,10 @@ func run_game_loop():
 			move_customers_to_spots()
 			pick_item()
 			update_robot(currentPuzzle.spriteName)
+	
+	if GLOBAL.STORE_OPEN:
+		puzzle_loop()
+		startLoop = false
 
 func do_speed_up():
 	if $Player.SPEED == 150:
@@ -367,7 +366,7 @@ func end_day():
 	do_we_win()
 
 func do_we_lose():
-	if cash < GLOBAL.GOALS[GLOBAL.CURR_DAY-1]:
+	if cash < goal:
 		GLOBAL.LOSE_CASH = cash
 		get_tree().change_scene("res://World/Lose.tscn")
 
@@ -385,6 +384,18 @@ func puzzle_loop():
 		move_customers_to_spots()
 		pick_item()
 		update_robot(currentPuzzle.spriteName)
+		
+		goal = GLOBAL.GOALS[GLOBAL.CURR_DAY]
+		if GLOBAL.HARD:
+			var numCust = GLOBAL.DAY_CUST[GLOBAL.CURR_DAY].size()
+			print("num: ", numCust)
+			print(cash + (numCust * 10) + 50)
+			var bonus = 50
+			goal = cash + (numCust * 10) + bonus
+		if GLOBAL.REG:
+			var numCust = GLOBAL.DAY_CUST[GLOBAL.CURR_DAY].size()
+			var bonus = 50
+			goal = (cash + (numCust * 10) + bonus) - 10
 	
 	if $LoopTimer.is_stopped():
 		for cust in customers:

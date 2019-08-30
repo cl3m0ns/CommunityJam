@@ -2,7 +2,7 @@ extends Node
 
 var map_seed = 0
 
-var easy_time = [10.1, 100.1, 90.1, 80.1, 70.1, 70.1, 70.1, 70.1, 70.1, 70.1, 70.1, 70.1]
+var easy_time = [60.1, 70.1, 80.1, 90.1, 100.1, 100.1, 110.1, 110.1, 120.1, 130.1, 140.1, 150.1]
 var regular_time = easy_time
 var hard_time = easy_time
 var LOOP_TIME = easy_time
@@ -14,7 +14,8 @@ var GOALS = easy_goal
 
 var MUSIC = true
 var SFX = true
-
+var REG = false
+var HARD = false
 var RIGHT_ITEM = null
 var STORE_OPEN = false
 var CUST_SPAWN_POS = Vector2(300, 150)
