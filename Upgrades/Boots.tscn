@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Upgrades/Boots.gd" type="Script" id=1]
 [ext_resource path="res://Upgrades/boots_unlocked.png" type="Texture" id=2]
 [ext_resource path="res://Upgrades/boots_upgrade.png" type="Texture" id=3]
+[ext_resource path="res://Sound/speed boots.wav" type="AudioStream" id=4]
 
 [sub_resource type="Animation" id=1]
 resource_name = "anim"
@@ -76,4 +77,15 @@ process_mode = 0
 wait_time = 3.0
 one_shot = true
 autostart = true
+
+[node name="booties" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 4 )
+volume_db = -35.0
+
+[node name="AudioTimer" type="Timer" parent="."]
+process_mode = 0
+wait_time = 0.5
+one_shot = true
+autostart = true
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
+[connection signal="timeout" from="AudioTimer" to="." method="_on_AudioTimer_timeout"]

@@ -1,9 +1,10 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://World/Settings.gd" type="Script" id=1]
 [ext_resource path="res://Transition/Transition.tscn" type="PackedScene" id=2]
 [ext_resource path="res://nulshock bd.ttf" type="DynamicFontData" id=3]
 [ext_resource path="res://Sound/title and end.wav" type="AudioStream" id=4]
+[ext_resource path="res://Sound/select.wav" type="AudioStream" id=5]
 
 [sub_resource type="DynamicFont" id=1]
 font_data = ExtResource( 3 )
@@ -136,6 +137,10 @@ text = "Sound effects"
 stream = ExtResource( 4 )
 volume_db = -25.0
 autoplay = true
+
+[node name="select" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 5 )
+volume_db = -35.0
 [connection signal="pressed" from="Transition/EasyMode" to="." method="_on_EasyMode_pressed"]
 [connection signal="pressed" from="Transition/RegularMode" to="." method="_on_RegularMode_pressed"]
 [connection signal="pressed" from="Transition/HardMode" to="." method="_on_HardMode_pressed"]

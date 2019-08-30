@@ -69,6 +69,10 @@ func get_stand_collision():
 		var bName = String(body.name).split("StandBox")
 		var itemName = String(item_were_holding.name).split("Items")
 		if bName[1] == itemName[1]:
+			if !GLOBAL.SFX:
+				$PickUpSounds.stop()
+			elif GLOBAL.SFX && !$PickUpSounds.is_playing():
+				$PickUpSounds.play()
 			place_item(body)
 
 
@@ -86,6 +90,10 @@ func open_store():
 	var parent = get_parent()
 	var door = parent.get_node("Door")
 	door.visible = false
+	if !GLOBAL.SFX:
+		$OpenShopSong.stop()
+	elif GLOBAL.SFX && !$OpenShopSong.is_playing():
+		$OpenShopSong.play()
 	get_parent().startLoop = true
 
 func get_item_collisions():
@@ -100,6 +108,10 @@ func get_item_collisions():
 			item_were_holding = item
 			$PickupCooldown.wait_time = 0.4
 			$PickupCooldown.start()
+			if !GLOBAL.SFX:
+				$PickUpSounds.stop()
+			elif GLOBAL.SFX && !$PickUpSounds.is_playing():
+				$PickUpSounds.play()
 	else:
 		var chillins = get_parent().find_node("ITEMS").get_children()
 		for child in chillins:
@@ -152,9 +164,18 @@ func sell_item():
 		else:
 			get_parent().cash += 5
 		GLOBAL.NEXT_CUST = true
+		
+		if !GLOBAL.SFX:
+			$GoodSale.stop()
+		elif GLOBAL.SFX && !$GoodSale.is_playing():
+			$GoodSale.play()
 	else:
 		GLOBAL.CURRENT_CUSTOMER.do_outcome(false)
 		cashReg.bad = true
+		if !GLOBAL.SFX:
+			$BadSale.stop()
+		elif GLOBAL.SFX && !$BadSale.is_playing():
+			$BadSale.play()
 	item_were_holding.hide()
 	item_were_holding.go_home()
 	item_were_holding = null

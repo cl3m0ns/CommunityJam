@@ -19,18 +19,30 @@ func _process(delta):
 
 
 func _on_EasyMode_pressed():
+	if !GLOBAL.SFX:
+		$select.stop()
+	elif GLOBAL.SFX && !$select.is_playing():
+		$select.play()
 	GLOBAL.LOOP_TIME = GLOBAL.easy_time
 	GLOBAL.GOALS = GLOBAL.easy_goal
 	start_game()
 
 
 func _on_RegularMode_pressed():
+	if !GLOBAL.SFX:
+		$select.stop()
+	elif GLOBAL.SFX && !$select.is_playing():
+		$select.play()
 	GLOBAL.LOOP_TIME = GLOBAL.regular_time
 	GLOBAL.GOALS = GLOBAL.regular_goal
 	start_game()
 
 
 func _on_HardMode_pressed():
+	if !GLOBAL.SFX:
+		$select.stop()
+	elif GLOBAL.SFX && !$select.is_playing():
+		$select.play()
 	GLOBAL.LOOP_TIME = GLOBAL.hard_time
 	GLOBAL.GOALS = GLOBAL.hard_goal
 	start_game()
@@ -43,12 +55,19 @@ func _on_MusicToggle_toggled(button_pressed):
 		GLOBAL.MUSIC = true
 	else:
 		GLOBAL.MUSIC = false
-	pass # Replace with function body.
+	if !GLOBAL.SFX:
+		$select.stop()
+	elif GLOBAL.SFX && !$select.is_playing():
+		$select.play()
 
 
 func _on_SoundEffectsToggle_toggled(button_pressed):
 	if button_pressed:
 		GLOBAL.SFX = true
+		if !GLOBAL.SFX:
+			$select.stop()
+		elif GLOBAL.SFX && !$select.is_playing():
+			$select.play()
 	else:
 		GLOBAL.SFX = false
 	pass # Replace with function body.
