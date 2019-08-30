@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://World/MainMenu.gd" type="Script" id=1]
 [ext_resource path="res://World/titlescreen.png" type="Texture" id=2]
+[ext_resource path="res://LiarBot/LiarBot.tscn" type="PackedScene" id=3]
 
 [node name="MainMenu" type="Node2D"]
 script = ExtResource( 1 )
@@ -13,3 +14,10 @@ centered = false
 [node name="ContinueTImer" type="Timer" parent="."]
 one_shot = true
 autostart = true
+
+[node name="LiarBot" parent="." instance=ExtResource( 3 )]
+position = Vector2( 540, 179 )
+
+[node name="LiarBot2" parent="." instance=ExtResource( 3 )]
+position = Vector2( 60, 179 )
+scale = Vector2( -1, 1 )
