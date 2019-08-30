@@ -334,11 +334,11 @@ func check_for_upgrade():
 		do_speed_up()
 	if GLOBAL.CURR_DAY == 9:
 		do_speed_up()
+	if GLOBAL.CURR_DAY == 10:
+		do_speed_up()
 	if GLOBAL.CURR_DAY == 11:
 		do_speed_up()
-	if GLOBAL.CURR_DAY == 13:
-		do_speed_up()
-	if GLOBAL.CURR_DAY == 15:
+	if GLOBAL.CURR_DAY == 12:
 		do_speed_up()
 
 func end_day():
@@ -364,11 +364,16 @@ func end_day():
 	customers = []
 	
 	do_we_lose()
+	do_we_win()
 
 func do_we_lose():
 	if cash < GLOBAL.GOALS[GLOBAL.CURR_DAY-1]:
 		GLOBAL.LOSE_CASH = cash
 		get_tree().change_scene("res://World/Lose.tscn")
+
+func do_we_win():
+	if GLOBAL.CURR_DAY == 13:
+		get_tree().change_scene("res://World/Win.tscn")
 
 func puzzle_loop():
 	if startLoop:
