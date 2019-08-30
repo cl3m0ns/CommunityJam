@@ -388,8 +388,6 @@ func puzzle_loop():
 		goal = GLOBAL.GOALS[GLOBAL.CURR_DAY]
 		if GLOBAL.HARD:
 			var numCust = GLOBAL.DAY_CUST[GLOBAL.CURR_DAY].size()
-			print("num: ", numCust)
-			print(cash + (numCust * 10) + 50)
 			var bonus = 50
 			goal = cash + (numCust * 10) + bonus
 		if GLOBAL.REG:
