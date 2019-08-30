@@ -235,7 +235,8 @@ func _physics_process(delta):
 		GLOBAL.NEXT_CUST = false
 		GLOBAL.CURRENT_CUSTOMER = null
 		#delete this after
-		cash = 0
+		$Player.SPEED = 500
+		GLOBAL.CURR_DAY = 11
 		#end of delete
 	
 	if storyDone && tutDone:
@@ -325,19 +326,19 @@ func do_speed_up():
 		add_child(boots)
 
 func check_for_upgrade():
-	if GLOBAL.CURR_DAY == 3:
+	if GLOBAL.CURR_DAY == 2:
+		do_speed_up()
+	if GLOBAL.CURR_DAY == 4:
 		do_speed_up()
 	if GLOBAL.CURR_DAY == 5:
 		do_speed_up()
-	if GLOBAL.CURR_DAY == 7:
+	if GLOBAL.CURR_DAY == 8:
 		do_speed_up()
 	if GLOBAL.CURR_DAY == 9:
 		do_speed_up()
 	if GLOBAL.CURR_DAY == 10:
 		do_speed_up()
 	if GLOBAL.CURR_DAY == 11:
-		do_speed_up()
-	if GLOBAL.CURR_DAY == 12:
 		do_speed_up()
 
 func end_day():
@@ -348,6 +349,7 @@ func end_day():
 	$LoopTimer.stop()
 	GLOBAL.CURRENT_CUSTOMER = null
 	GLOBAL.CURR_DAY += 1
+	print(GLOBAL.CURR_DAY)
 	if $Player.item_were_holding != null:
 		$Player.item_were_holding.go_home()
 		$Player.item_were_holding = null
@@ -371,7 +373,9 @@ func do_we_lose():
 		get_tree().change_scene("res://World/Lose.tscn")
 
 func do_we_win():
-	if GLOBAL.CURR_DAY == 13:
+	print('checking curr day: ', GLOBAL.CURR_DAY == 13)
+	print('curr day: ', GLOBAL.CURR_DAY)
+	if GLOBAL.CURR_DAY == 12:
 		get_tree().change_scene("res://World/Win.tscn")
 
 func puzzle_loop():

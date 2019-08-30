@@ -2,14 +2,14 @@ extends Node
 
 var map_seed = 0
 
-var easy_time = [60.1, 70.1, 80.1, 90.1, 100.1, 100.1, 110.1, 110.1, 120.1, 130.1, 140.1, 150.1]
-var regular_time = easy_time
-var hard_time = easy_time
+var easy_time =    [50.1, 60.1, 60.1, 80.1, 90.1, 100.1, 100.1, 110.1, 110.1, 120.1, 120.1, 130.1]
+var regular_time = [30.1, 30.1, 40.1, 50.1, 50.1, 60.1, 70.1, 80.1, 80.1, 80.1, 90.1, 90.1]
+var hard_time  =   [30.1, 30.1, 30.1, 40.1, 40.1, 40.1, 50.1, 50.1, 50.1, 60.1, 60.1, 60.1]
 var LOOP_TIME = easy_time
 
 var easy_goal = [55, 115, 180, 250, 330, 420, 520, 630, 745, 865, 990, 1120]
-var regular_goal = [55, 115, 180, 250, 330, 420, 520, 630, 745, 865, 990, 1120]
-var hard_goal = [55, 115, 180, 250, 330, 420, 520, 630, 745, 865, 990, 1120]
+var regular_goal = easy_goal
+var hard_goal = easy_goal
 var GOALS = easy_goal
 
 var MUSIC = true
@@ -38,7 +38,7 @@ var DAY_CUST = [
 var STORY_TIME = false
 var TUT_TIME = false
 var FADING = false
-var RESET = false
+var RESET = true
 var LOSE_CASH = 0
 func _ready():
 	randomize()
