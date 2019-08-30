@@ -234,10 +234,7 @@ func _physics_process(delta):
 		GLOBAL.STORE_OPEN = false
 		GLOBAL.NEXT_CUST = false
 		GLOBAL.CURRENT_CUSTOMER = null
-		#delete this after
-#		$Player.SPEED = 500
-#		GLOBAL.CURR_DAY = 11
-		#end of delete
+
 	
 	if storyDone && tutDone:
 		GLOBAL.STORY_TIME = false

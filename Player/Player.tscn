@@ -88,4 +88,4 @@ volume_db = -45.0
 
 [node name="PickUpSounds" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 6 )
-volume_db = -45.0
+volume_db = -35.0
